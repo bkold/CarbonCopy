@@ -72,7 +72,7 @@ def public(request, ribbit_form=None):
     ribbits = Ribbit.objects.reverse()[:10]
     return render(request,
                   'public.html',
-                  {'ribbit_form': ribbit_form, 'next_url': '/ribbits',
+                  {'ribbit_form': ribbit_form, 'next_url': '/public',
                    'ribbits': ribbits, 'username': request.user.username})
 
 
