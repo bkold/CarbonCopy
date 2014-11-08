@@ -3,7 +3,7 @@ Carbon Copy
 
 A fork of 'Ribbit - Twitter Clone'
 
-Carbon Coby is made useing django and incorporates image uploading
+Carbon Coby is made using django and incorporates image uploading
 
 ***
 
@@ -16,5 +16,5 @@ For installation instructions, read buildinstruction.txt
 To Do's
 ============
 
-Add the ability to change profile image in profile page unser settings
+Add the ability to change profile image in profile page user settings
 
