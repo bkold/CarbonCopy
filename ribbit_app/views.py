@@ -97,7 +97,6 @@ def get_latest(user):
     except IndexError:
         return ""
 
-
 @login_required
 def users(request, username="", ribbit_form=None):
     if username:

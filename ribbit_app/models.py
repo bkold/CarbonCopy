@@ -12,12 +12,12 @@ def get_profile_file_name(instance, filename):
 
 class Ribbit(models.Model):
     content = models.CharField(max_length=60)
-    pic = models.FileField(upload_to=get_upload_file_name)
+    pic = models.ImageField(upload_to=get_upload_file_name)
     user = models.ForeignKey(User)
     creation_date = models.DateTimeField(auto_now=True, blank=True)
 
 class UserProfile(models.Model):
-    gravatar_url = models.FileField(upload_to=get_profile_file_name, default='/static/gfx/default.jpg')
+    gravatar_url = models.ImageField(upload_to=get_profile_file_name, default='/static/gfx/default.jpg')
     user = models.OneToOneField(User)
     follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False)
     
