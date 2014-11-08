@@ -52,7 +52,7 @@ def logout_view(request):
 
 
 def signup(request):
-    user_form = UserCreateForm(data=request.POST)
+    user_form = UserCreateForm(request.POST, request.FILES)
     if request.method == 'POST':
         if user_form.is_valid():
             username = user_form.clean_username()
@@ -79,7 +79,7 @@ def public(request, ribbit_form=None):
 @login_required
 def submit(request):
     if request.method == "POST":
-        ribbit_form = RibbitForm(data=request.POST)
+        ribbit_form = RibbitForm(request.POST, request.FILES)
         next_url = request.POST.get("next_url", "/")
         if ribbit_form.is_valid():
             ribbit = ribbit_form.save(commit=False)

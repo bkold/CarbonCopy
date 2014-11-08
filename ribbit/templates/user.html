@@ -7,10 +7,10 @@
 
 {% block content %}
     <div class="panel left">
-        <h1>{{ user.first_name }}'s Profile</h1>
+        <h1>{{ user.username }}'s Profile</h1>
         <div class="ribbitWrapper">
             <a href="/users/{{ user.username }}">
-                <img class="avatar" src="{{ user.profile.gravatar_url }}">
+                <img class="avatar" src="{{ user.profile.gravatar_url }}" width="60" height="60">
                 <span class="name">{{ user.first_name }}</span>
             </a>
                 @{{ user.username }}
@@ -30,15 +30,18 @@
     </div>
 
     <div class="panel left">
-        <h1>{{ user.first_name }}'s Ribbits</h1>
+        <h1>{{ user.username }}'s Uploads</h1>
         {% for ribbit in ribbits %}
         <div class="ribbitWrapper">
             <a href="/users/{{ user.username }}">
-                <img class="avatar" src="{{ user.profile.gravatar_url }}">
+                <img class="avatar" src="{{ user.profile.gravatar_url }}" width="60" height="60">
                 <span class="name">{{ ribbit.user.first_name }}</span>
             </a>
             @{{ ribbit.user.username }}
             <span class="time">{{ ribbit.creation_date|timesince }}</span>
+		{% if ribbit.pic %}
+		<p><img src="{{MEDIA_URL}}{{ribbit.pic}}" width="400"/></p>
+		{% endif %}
             <p>{{ ribbit.content }}</p>
         </div>
         {% endfor %}

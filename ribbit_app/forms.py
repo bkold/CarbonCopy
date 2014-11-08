@@ -6,28 +6,25 @@ from ribbit_app.models import Ribbit
 
 
 class UserCreateForm(UserCreationForm):
-    email = forms.EmailField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'Email'}))
-    first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'First Name'}))
-    last_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'Last Name'}))
-    username = forms.CharField(widget=forms.widgets.TextInput(attrs={'placeholder': 'Username'}))
+    #email = forms.EmailField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'Email'}))
+    username = forms.CharField(widget=forms.widgets.TextInput(attrs={'placeholder': 'Email'}))
     password1 = forms.CharField(widget=forms.widgets.PasswordInput(attrs={'placeholder': 'Password'}))
     password2 = forms.CharField(widget=forms.widgets.PasswordInput(attrs={'placeholder': 'Password Confirmation'}))
-
+    gravatar_url = forms.FileField(required=False)
     def is_valid(self):
         form = super(UserCreateForm, self).is_valid()
         for f, error in self.errors.iteritems():
             if f != '__all_':
-                self.fields[f].widget.attrs.update({'class': 'error', 'value': strip_tags(error)})
+                self.fields[f].widget.attrs.update({'class': 'error ribbitText'})
         return form
 
     class Meta:
-        fields = ['email', 'username', 'first_name', 'last_name', 'password1',
-                  'password2']
+        fields = ['username', 'password1', 'password2', 'gravatar_url']
         model = User
 
 
 class AuthenticateForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.widgets.TextInput(attrs={'placeholder': 'Username'}))
+    username = forms.CharField(widget=forms.widgets.TextInput(attrs={'placeholder': 'Email'}))
     password = forms.CharField(widget=forms.widgets.PasswordInput(attrs={'placeholder': 'Password'}))
 
     def is_valid(self):
@@ -40,7 +37,7 @@ class AuthenticateForm(AuthenticationForm):
 
 class RibbitForm(forms.ModelForm):
     content = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={'class': 'ribbitText'}))
-
+    pic = forms.FileField(required=True)
     def is_valid(self):
         form = super(RibbitForm, self).is_valid()
         for f in self.errors.iterkeys():
@@ -50,4 +47,5 @@ class RibbitForm(forms.ModelForm):
 
     class Meta:
         model = Ribbit
+	fields=('content', 'pic')
         exclude = ('user',)

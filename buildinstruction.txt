@@ -1,0 +1,9 @@
+make virtualenv [virtualenv --no-site-packages whatevername]
+install django 1.6
+install south
+move django-ribbit to virtual folder
+delete all files in django-ribbit/ribbit_app/migrations
+syncdb
+python manage.py schemamigration ribbit_app --inialal
+python manage.py migrate ribbit_app
+
