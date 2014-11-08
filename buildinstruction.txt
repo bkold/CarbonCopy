@@ -1,6 +1,7 @@
 make virtualenv [virtualenv --no-site-packages whatevername]
 install django 1.6
 install south
+install Pillow
 move django-ribbit to virtual folder
 delete all files in django-ribbit/ribbit_app/migrations
 syncdb
