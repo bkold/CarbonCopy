@@ -1,9 +1,9 @@
-django-ribbit
+Carbon Copy
 =============
 
-Ribbit - A Twitter Clone made using Django
+A fork of 'Ribbit - Twitter Clone'
 
-A live demo of the app can be found at http://vast-earth-7154.herokuapp.com/
+Carbon Coby is made useing django and incorporates image uploading
 
 ***
 
@@ -22,23 +22,20 @@ virtualenv --no-site-packages ribbit_env
 With the the virtual environment activated, install the dependencies
 
 ```
-pip install Django South
+pip install Django == 1.6
+
+pip install South
+
+pip install Pillow
+
 ```
   
-Next, `cd` into the repository and run the `syncdb` command to create the tables and superuser account
+For installation instructions, read buildinstruction.txt
 
-```
-python manage.py syncdb
-```
+***
 
-Then, apply the migrations
+To Do's
+============
 
-```
-python manage.py migrate ribbit_app
-```
-  
-Finally, start the development server to preview the application
+Add the ability to change profile image in profile page unser settings
 
-```
-python manage.py runserver
-```
