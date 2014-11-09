@@ -82,13 +82,13 @@ def submit(request):
         ribbit_form = RibbitForm(request.POST, request.FILES)
         next_url = request.POST.get("next_url", "/")
         if ribbit_form.is_valid():
-            ribbit = ribbit_form.save(commit=False)
-            ribbit.user = request.user
-            ribbit.save()
-            return redirect(next_url)
-        else:
-            return public(request, ribbit_form)
-    return redirect('/')
+			ribbit = ribbit_form.save(commit=False)
+			ribbit.user = request.user
+			ribbit.save()
+			return redirect(next_url)
+	else:
+			return public(request, ribbit_form)
+	return redirect('/')
 
 
 def get_latest(user):

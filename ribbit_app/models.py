@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from time import time
+from django.core.validators import MaxValueValidator, MinValueValidator
 import hashlib
 
 def get_upload_file_name(instance, filename):
@@ -13,6 +14,7 @@ def get_profile_file_name(instance, filename):
 class Ribbit(models.Model):
     content = models.CharField(max_length=60)
     pic = models.ImageField(upload_to=get_upload_file_name)
+    brightness = models.IntegerField(default=0, validators=[MaxValueValidator(100), MinValueValidator(-100)])
     user = models.ForeignKey(User)
     creation_date = models.DateTimeField(auto_now=True, blank=True)
 

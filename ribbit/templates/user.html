@@ -6,11 +6,8 @@
 {% endblock %}
 
 {% block content %}
-     <div class="panel right">
-        <h1>Settings</h1>
 
-    </div>
-    <div class="panel left">
+    <div class="panel right">
         <h1>{{ user.username }}'s Profile</h1>
         <div class="ribbitWrapper">
             <a href="/users/{{ user.username }}">
@@ -19,7 +16,7 @@
             </a>
                 @{{ user.username }}
             <p>
-                {{ ribbits.count }} Posts
+                <span class="spacing">{{ ribbits.count }} Posts</span>
                 <span class="spacing">{{ user.profile.follows.all.count }} Following</span>
                 <span class="spacing">{{ user.profile.followed_by.all.count }} Followers</span>
             </p>

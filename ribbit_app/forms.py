@@ -37,16 +37,18 @@ class AuthenticateForm(AuthenticationForm):
 
 
 class RibbitForm(forms.ModelForm):
-    content = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={'class': 'ribbitText'}))
-    pic = forms.ImageField(required=True)
-    def is_valid(self):
-        form = super(RibbitForm, self).is_valid()
-        for f in self.errors.iterkeys():
-            if f != '__all__':
-                self.fields[f].widget.attrs.update({'class': 'error ribbitText'})
-        return form
+	content = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={'class': 'ribbitText'}))
+	pic = forms.ImageField(required=True)
+	brightness = forms.IntegerField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder': 'Brightness: -100 to 100'}))
+	
+	def is_valid(self):
+		form = super(RibbitForm, self).is_valid()
+		for f in self.errors.iterkeys():
+			if f != '__all__':
+				self.fields[f].widget.attrs.update({'class': 'error ribbitText'})
+		return form
 
-    class Meta:
-        model = Ribbit
-	fields=('content', 'pic')
-        exclude = ('user',)
+	class Meta:
+		model = Ribbit
+		fields=('content', 'pic', 'brightness')
+		exclude = ('user',)
