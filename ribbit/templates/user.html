@@ -41,7 +41,38 @@
             @{{ ribbit.user.username }}
             <span class="time">{{ ribbit.creation_date|timesince }}</span>
 		{% if ribbit.pic %}
-		<p><img src="{{MEDIA_URL}}{{ribbit.pic}}" width="400"/></p>
+		<p>
+
+		
+		<script src="{{STATIC_URL}}glfx.js"></script>
+		<script>
+
+		window.onload = function() {
+		    // try to create a WebGL canvas (will fail if WebGL isn't supported)
+		    try {
+			var canvas = fx.canvas();
+	
+		    } catch (e) {
+			alert(e);
+			return;
+		    }
+
+		    // convert the image to a texture
+		    var image = document.getElementById('image');
+		    var texture = canvas.texture(image);
+
+		    // apply the ink filter
+		    canvas.draw(texture).brightnessContrast({{ribbit.brightness}}/100, 0).update();
+
+		    // replace the image with the canvas
+		    image.parentNode.insertBefore(canvas, image);
+		    image.parentNode.removeChild(image);
+		};
+
+
+		</script>
+		<img id="image" src="{{MEDIA_URL}}{{ribbit.pic}}" width="400">
+	</p>
 		{% endif %}
             <p>{{ ribbit.content }}</p>
         </div>
