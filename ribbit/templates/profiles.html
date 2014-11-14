@@ -1,3 +1,4 @@
+<!--Public Profiles url-->
 {% extends "base.html" %}
 
 {% block content %}
@@ -15,6 +16,21 @@
     </div>
     <div class="panel left">
         <h1>Public Profiles</h1>
+        <script>
+			function addLoadEvent(func) {
+			  var oldonload = window.onload;
+			  if (typeof window.onload != 'function') {
+				window.onload = func;
+			  } else {
+				window.onload = function() {
+				  if (oldonload) {
+					oldonload();
+				  }
+				  func();
+				}
+			  }
+			}
+		</script>
         {% for user, ribbit in obj %}
         <div class="ribbitWrapper">
             <a href="/users/{{ user.username }}">
@@ -27,42 +43,36 @@
                 <span class="spacing">{{ user.profile.followed_by.count }} Followers</span>
                 <span class="spacing">{{ user.profile.follows.count }} Following</span>
             </p>
-		{% if ribbit.pic %}
-		<p>
+			{% if ribbit.pic %}
+			<div>
+				<script>
+					function func{{ribbit.id}}() {
+						// try to create a WebGL canvas (will fail if WebGL isn't supported)
+						try {
+							var canvas{{ribbit.id}} = fx.canvas();
 
-		
-		<script src="{{STATIC_URL}}glfx.js"></script>
-		<script>
-
-		window.onload = function() {
-		    // try to create a WebGL canvas (will fail if WebGL isn't supported)
-		    try {
-			var canvas = fx.canvas();
-	
-		    } catch (e) {
-			alert(e);
-			return;
-		    }
-
-		    // convert the image to a texture
-		    var image = document.getElementById('image');
-		    var texture = canvas.texture(image);
-
-		    // apply the ink filter
-		    canvas.draw(texture).brightnessContrast({{ribbit.brightness}}/100, 0).update();
-
-		    // replace the image with the canvas
-		    image.parentNode.insertBefore(canvas, image);
-		    image.parentNode.removeChild(image);
-		};
-
-
-		</script>
-		<img id="image" src="{{MEDIA_URL}}{{ribbit.pic}}" width="400">
-	</p>
-		{% endif %}
-            <p>{{ ribbit.content }}</p>
-        </div>
+						} catch (e) {
+							alert(e);
+							return;
+						}
+							// convert the image to a texture
+						var image{{ribbit.id}} = document.getElementById('image{{ribbit.id}}');
+						var texture{{ribbit.id}} = canvas{{ribbit.id}}.texture(image{{ribbit.id}});
+							// apply the ink filter
+						canvas{{ribbit.id}}.draw(texture{{ribbit.id}}).brightnessContrast({{ribbit.brightness}}/100.0, 0).update();
+							// replace the image with the canvas
+						image{{ribbit.id}}.parentNode.insertBefore(canvas{{ribbit.id}}, image{{ribbit.id}});
+						image{{ribbit.id}}.parentNode.removeChild(image{{ribbit.id}});
+					};
+					addLoadEvent(func{{ribbit.id}});		
+				</script>
+				<a class="grouped_elements" href="{{MEDIA_URL}}{{ribbit.pic}}" >
+					<img id="image{{ribbit.id}}" src="{{MEDIA_URL}}{{ribbit.pic}}" width="400">
+				</a>
+			</div>
+           	<p>{{ ribbit.content }}</p>
+			{% endif %}
+       	</div>
         {% endfor %}
     </div>
 {% endblock %}
