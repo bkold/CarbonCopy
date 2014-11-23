@@ -4,6 +4,7 @@ activate the python virtual environment
 install django 1.6
 install south
 install Pillow
+install selenium
 delete all files in django-ribbit/ribbit_app/migrations
 pyhton manage.py syncdb
 python manage.py schemamigration ribbit_app --initial
