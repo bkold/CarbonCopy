@@ -26,7 +26,7 @@ class UserCreateForm(UserCreationForm):
 
 class AuthenticateForm(AuthenticationForm):
     username = forms.CharField(widget=forms.widgets.TextInput(attrs={'placeholder': 'username'}))
-    password = forms.CharField(widget=forms.widgets.PasswordInput(attrs={'placeholder': 'Password'}))
+    password = forms.CharField(widget=forms.widgets.PasswordInput(attrs={'placeholder': 'password'}))
 
     def is_valid(self):
         form = super(AuthenticateForm, self).is_valid()
