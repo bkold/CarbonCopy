@@ -178,7 +178,7 @@ class TestWebdriver(LiveServerTestCase):
 		content = self.driver.find_element_by_id("id_content")
 		content.send_keys("test")
 		pic = self.driver.find_element_by_id("id_pic")
-		pic.send_keys("C:\Users\srujank\Desktop\CarbonCopy-master\cat.jpg") #This should be the addresses of your picture
+		pic.send_keys("PATHTOPROJECT/ribbit/pictures/uploaded_files/test.jpg") #This should be the addresses of your picture
 		self.driver.find_element_by_xpath('//input[@value="Post!"]').click()
 
 		self.driver.find_element_by_link_text("Public Profiles").click()
