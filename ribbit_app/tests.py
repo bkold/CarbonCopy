@@ -15,7 +15,6 @@ from selenium.common.exceptions import NoSuchElementException
 import unittest, time, re
 from time import time
 
-
 class TestAccess(TestCase):
 	def setUp(self):
 		self.c = Client()
@@ -146,7 +145,7 @@ class TestWebdriver(LiveServerTestCase):
 
 		self.driver.implicitly_wait(10)
 		username = self.driver.find_element_by_xpath('//input[@placeholder="Username"]')
-		username.send_keys("test_new")		# This needs to change evertime 
+		username.send_keys("test_new_1")		# This needs to change evertime 
 		password1 = self.driver.find_element_by_id("id_email")
 		password1.send_keys("testuser@test.com")
 		password1 = self.driver.find_element_by_id("id_password1")
@@ -173,9 +172,22 @@ class TestWebdriver(LiveServerTestCase):
 		self.driver.find_element_by_xpath('//input[@value="Log In"]').click()
 		self.driver.implicitly_wait(10)
 		self.driver.find_element_by_link_text("Home").click()
+		#picture input 
+		brightness = self.driver.find_element_by_id("id_brightness")
+		brightness.send_keys("10")
+		content = self.driver.find_element_by_id("id_content")
+		content.send_keys("test")
+		pic = self.driver.find_element_by_id("id_pic")
+		pic.send_keys("C:\Users\srujank\Desktop\CarbonCopy-master\cat.jpg") #This should be the addresses of your picture
+		self.driver.find_element_by_xpath('//input[@value="Post!"]').click()
+
 		self.driver.find_element_by_link_text("Public Profiles").click()
 		self.driver.implicitly_wait(10)
 		self.driver.find_element_by_link_text("My Profile").click()
 		self.driver.implicitly_wait(10)
 		self.driver.find_element_by_link_text("Public Posts").click()
+
 		self.driver.find_element_by_xpath('//input[@value="Log Out"]').click()
+		
+		
+		
