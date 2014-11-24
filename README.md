@@ -13,8 +13,4 @@ For installation instructions, read buildinstruction.txt
 
 ***
 
-To Do's
-============
-
-Add the ability to change profile image in profile page user settings
 
