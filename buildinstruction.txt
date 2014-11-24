@@ -9,3 +9,9 @@ delete all files in django-ribbit/ribbit_app/migrations
 pyhton manage.py syncdb
 python manage.py schemamigration ribbit_app --initial
 python manage.py migrate ribbit_app
+
+--To run tests
+
+edit the picture path within ribbit_app/tests.py to suit your system
+run 'python manage.py test ribbit_app -v2'
+
