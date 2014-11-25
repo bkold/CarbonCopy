@@ -154,6 +154,15 @@ class TestWebdriver(LiveServerTestCase):
 		password2.send_keys("123")
 		self.driver.find_element_by_xpath('//input[@value="Create Account"]').click()
 		self.driver.implicitly_wait(10)
+		#picture input 
+		brightness = self.driver.find_element_by_id("id_brightness")
+		brightness.send_keys("10")
+		content = self.driver.find_element_by_id("id_content")
+		content.send_keys("test")
+		pic = self.driver.find_element_by_id("id_pic")
+		pic.send_keys("/home/brian/Desktop/CarbonCopy/CC/ribbit/pictures/uploaded_files/test.jpg") #This should be the addresses of your picture
+		self.driver.find_element_by_xpath('//input[@value="Post!"]').click()
+		self.driver.implicitly_wait(10)
 		self.driver.find_element_by_link_text("Public Profiles").click()
 		self.driver.implicitly_wait(10)
 		self.driver.find_element_by_link_text("My Profile").click()
@@ -165,7 +174,7 @@ class TestWebdriver(LiveServerTestCase):
 		self.driver.get('http://127.0.0.1:8000/')
 
 		username =  self.driver.find_element_by_id("id_username")
-		username.send_keys("root")       #this needs to be a vaild user
+		username.send_keys("test_new_1")       #this needs to be a vaild user
 		password =  self.driver.find_element_by_id("id_password")
 		password.send_keys("123")
 		self.driver.implicitly_wait(10)
@@ -178,9 +187,9 @@ class TestWebdriver(LiveServerTestCase):
 		content = self.driver.find_element_by_id("id_content")
 		content.send_keys("test")
 		pic = self.driver.find_element_by_id("id_pic")
-		pic.send_keys("PATHTOPROJECT/ribbit/pictures/uploaded_files/test.jpg") #This should be the addresses of your picture
+		pic.send_keys("/home/brian/Desktop/CarbonCopy/CC/ribbit/pictures/uploaded_files/test.jpg") #This should be the addresses of your picture
 		self.driver.find_element_by_xpath('//input[@value="Post!"]').click()
-
+		self.driver.implicitly_wait(10)
 		self.driver.find_element_by_link_text("Public Profiles").click()
 		self.driver.implicitly_wait(10)
 		self.driver.find_element_by_link_text("My Profile").click()
