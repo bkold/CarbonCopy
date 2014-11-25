@@ -14,6 +14,5 @@ python manage.py migrate ribbit_app
 
 edit the picture path within ribbit_app/tests.py to suit your system
 activate the server
-in aa different terminal
-run 'python manage.py test ribbit_app -v2'
+in a different terminal run 'python manage.py test ribbit_app -v2'
 
